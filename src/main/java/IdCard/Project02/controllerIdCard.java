@@ -10,6 +10,7 @@ import java.util.Date;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,23 +22,25 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 public class controllerIdCard {
-   @RequestMapping("/hallo")
-   @ResponseBody
+   @RequestMapping("/viewpage")
    public String getData(@RequestParam("nama") String nama,
-           @RequestParam("tanggal") @DateTimeFormat (pattern="yyyy-mm-dd")Date date,
-           @RequestParam("gambar") MultipartFile gambar
+           @RequestParam("tanggal") @DateTimeFormat (pattern="yyyy-mm-dd")Date tanggal,
+           @RequestParam("gambar") MultipartFile gambar,
+           Model IDCard
+           
    ) throws IOException{
        SimpleDateFormat newTanggal= new SimpleDateFormat("dd-mm-yyyy");
-       nama = textProcess(nama);
-       String born = newTanggal.format(date);
-       
+     
+       String born = newTanggal.format(tanggal);
 
        String blob = Base64.encodeBase64String(gambar.getBytes());
-       return nama + born + "<br><img src='data:image/jpeg;base64,"+blob+" ' />";
-   }
-   private String textProcess(String nama){
-       String result ="";
-       return result;
-   }
-}
+       String gambarrp= "data:image/jpg;base64,".concat(blob);
+       
+        IDCard.addAttribute("nma", nama);
+        IDCard.addAttribute("tgl", tanggal);
+        IDCard.addAttribute("gbr", gambarrp);
 
+        return "viewpage";
+   }
+ 
+}

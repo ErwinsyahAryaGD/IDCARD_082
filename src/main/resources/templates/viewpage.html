@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>IDCard</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="wi;dth=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+           
+         <div class="container" style="margin-top: 10px;">
+    <div class="row"
+      style="border: 1px darkgrey solid; border-radius: 10px; width: 30%; margin: 0 auto; padding: 20px;">
+      <div class="col-sm-12">   
+                        
+                        <center><h1>IDCard</h1></center>
+                        <hr/>
+                        <tr>
+                        
+                            <h3 th:text="${nma}"></h3>
+                            <h3 th:text="${tgl}"></h3>
+                            
+                            <p align="center"><img th:src="${gbr}" width="150" height="200"></p>
+                            
+                        </tr>
+                        
+                </div><!-- comment -->
+                
+        </div>
+        
+        
+    </body>
+</html>
